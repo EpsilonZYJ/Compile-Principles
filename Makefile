@@ -1,5 +1,7 @@
+.PHONY: build shell
+
 IMAGE	:=	sysy-rv64-lab:latest
-RUN		:=	docker run --rm rv64
+RUN		:=	docker compose run --rm rv64
 
 build:
 	docker compose build
