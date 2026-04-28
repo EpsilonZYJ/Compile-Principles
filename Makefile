@@ -5,6 +5,7 @@ RUN			:=	docker compose run --rm rv64
 
 clean:
 	rm -rf sysy
+	find . -name "*.o" -type f -delete
 
 delete:
 	make clean

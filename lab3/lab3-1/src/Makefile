@@ -4,9 +4,9 @@ CC=g++
 CXXFLAGS += -std=c++17
 
 $(target):${objs}
-        $(CC) -o $(target)  $(objs) 
+		$(CC) -o $(target)  $(objs) 
 %.o:%.cpp
-        $(CC) -c $< $(CXXFLAGS)
+		$(CC) -c $< $(CXXFLAGS)
 .PHONY: clean
 clean:
-        rm $(objs) parser.cpp parser.hpp tokens.cpp parser -f
+		rm $(objs) parser.cpp parser.hpp tokens.cpp parser -f
