@@ -343,12 +343,68 @@ BlockItem:	 Decl {
 // | 'break' ';' | 'continue' ';'
 // | 'return' [Exp] ';'
 
-
-
-
-
-
-
+Stmt:   LVal ASSIGN Exp SEMICOLON {
+            $$ = new StmtAST();
+            $$->sType = STYPE::ASS;
+            $$->lVal = unique_ptr<LValAST>($1);
+            $$->exp = unique_ptr<AddExpAST>($3);
+        }
+        |Exp SEMICOLON {
+            $$ = new StmtAST();
+            $$->sType = STYPE::EXP;
+            $$->exp = unique_ptr<AddExpAST>($1);
+        }
+        |SEMICOLON {
+            $$ = new StmtAST();
+            $$->sType = STYPE::SEMI;
+        }
+        |Block {
+            $$ = new StmtAST();
+            $$->sType = STYPE::BLK;
+            $$->block = unique_ptr<BlockAST>($1);
+        }
+        |IF LP Cond RP Stmt {
+            $$ = new StmtAST();
+            $$->sType = STYPE::SEL;
+            $$->selectStmt = make_unique<SelectStmtAST>();
+            $$->selectStmt->cond = unique_ptr<LOrExpAST>($3);
+            $$->selectStmt->ifStmt = unique_ptr<StmtAST>($5);
+        }
+        |IF LP Cond RP Stmt ELSE Stmt {
+            $$ = new StmtAST();
+            $$->sType = STYPE::SEL;
+            $$->selectStmt = make_unique<SelectStmtAST>();
+            $$->selectStmt->cond = unique_ptr<LOrExpAST>($3);
+            $$->selectStmt->ifStmt = unique_ptr<StmtAST>($5);
+            $$->selectStmt->elseStmt = unique_ptr<StmtAST>($7);
+        }
+        |WHILE LP Cond RP Stmt {
+            $$ = new StmtAST();
+            $$->sType = STYPE::ITER;
+            $$->iterationStmt = make_unique<IterationStmtAST>();
+            $$->iterationStmt->cond = unique_ptr<LOrExpAST>($3);
+            $$->iterationStmt->stmt = unique_ptr<StmtAST>($5);
+        }
+        |BREAK SEMICOLON {
+            $$ = new StmtAST();
+            $$->sType = STYPE::BRE;
+        }
+        |CONTINUE SEMICOLON {
+            $$ = new StmtAST();
+            $$->sType = STYPE::CONT;
+        }
+        |RETURN Exp SEMICOLON {
+            $$ = new StmtAST();
+            $$->sType = STYPE::RET;
+            $$->returnStmt = make_unique<ReturnStmtAST>();
+            $$->returnStmt->exp = unique_ptr<AddExpAST>($2);
+        }
+        |RETURN SEMICOLON {
+            $$ = new StmtAST();
+            $$->sType = STYPE::RET;
+            $$->returnStmt = make_unique<ReturnStmtAST>();
+        }
+        ;
 
 
 // 表达式
