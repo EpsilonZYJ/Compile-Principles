@@ -1,4 +1,5 @@
 #include "checker.h"
+#include "errorReporter.h"
 
 /* 静态语义分析
  1. Redefined Variable 变量重复定义/函数形参重复定义
@@ -23,7 +24,7 @@
  * @param {CompUnitAST&} ast - 单元类，也是语法树的根节点
  */
 void Checker::visit(CompUnitAST &ast) {
-  //创建新的表项
+  // 创建新的表项
   make_new_table();
   for (auto &decl : ast.declDefList) {
     decl->accept(*this);
@@ -58,7 +59,8 @@ void Checker::visit(DeclAST &ast) {
   }
   // 将定义的变量插入符号表
   if (!InsertVar(ast)) {
-    // TODO 变量重复定义
+    // REVIEW: 变量重复定义
+    err.error(ErrorType::VarDuplicated, *ast.defList[0]->id);
     exit(int(ErrorType::VarDuplicated));
   }
 }
@@ -126,11 +128,10 @@ void Checker::visit(ReturnStmtAST &ast) {
   }
 
   auto entry = find_func();
-  // TODO 函数返回类型不匹配
+  // REVIEW 函数返回类型不匹配
   if (entry->type != this->current_type.type) {
-
-
-
+    err.error(ErrorType::FuncReturnTypeNotMatch, *entry->func_params[0].id);
+    exit(int(ErrorType::FuncReturnTypeNotMatch));
   }
 }
 
@@ -144,12 +145,10 @@ void Checker::visit(ReturnStmtAST &ast) {
  **/
 void Checker::visit(FuncDefAST &ast) {
   // 将函数插入符号表
-  // TODO 函数重复定义
+  // REVIEW: 函数重复定义
   if (!InsertFunc(ast)) {
-
-
-
-
+    err.error(ErrorType::FuncDuplicated, *ast.id);
+    exit(int(ErrorType::FuncDuplicated));
   }
   start_of_new_func = true;
   ast.block->accept(*this);
@@ -163,13 +162,12 @@ void Checker::visit(FuncDefAST &ast) {
  * @param {BlockAST&} ast - 函数体块类
  */
 void Checker::visit(BlockAST &ast) {
-  //一个新的函数在插入时就已经建了新的符号表，这里不用重复建
+  // 一个新的函数在插入时就已经建了新的符号表，这里不用重复建
   if (start_of_new_func)
     start_of_new_func = false;
-  //对非函数定义的语句块添加新的符号表
+  // 对非函数定义的语句块添加新的符号表
   else
     make_new_table();
-
 
   // TODO: blockItemList继承BlockAST的is_inloop
   for (auto &item : ast.blockItemList) {
@@ -177,7 +175,7 @@ void Checker::visit(BlockAST &ast) {
     item->accept(*this);
   }
 
-  //语句块作用域结束，删除之前添加的符号表
+  // 语句块作用域结束，删除之前添加的符号表
   delete_table();
 }
 
@@ -189,9 +187,9 @@ void Checker::visit(BlockAST &ast) {
  */
 void Checker::visit(BlockItemAST &ast) {
 
-  // TODO: blockItemList继承BlockAST的is_inloop    
+  // TODO: blockItemList继承BlockAST的is_inloop
   if (ast.stmt) {
- 
+
     ast.stmt->accept(*this);
   }
   if (ast.decl) {
@@ -226,7 +224,7 @@ void Checker::visit(StmtAST &ast) {
 
   if (ast.returnStmt) {
     ast.returnStmt->accept(*this);
-  }  
+  }
   if (ast.lVal) {
     ast.lVal->accept(*this);
   }
@@ -236,12 +234,9 @@ void Checker::visit(StmtAST &ast) {
 
   if (ast.sType == STYPE::BRE) { // 当前节点为Break语句类型
     // TODO 检查该break语句是否在循环体内,若不是应报错
-  
-  
-  
+
   } else if (ast.sType == STYPE::CONT) { // 当前节点为Continue语句类型
-    // TODO 检查该continuek语句是否在循环体内,若不是应报错
- 
+    // TODO 检查该continue语句是否在循环体内,若不是应报错
   }
 }
 
@@ -259,7 +254,7 @@ void Checker::visit(SelectStmtAST &ast) {
     ast.elseStmt->accept(*this);
   }
   if (ast.ifStmt) {
-    
+
     ast.ifStmt->accept(*this);
   }
   if (ast.cond) {
@@ -276,7 +271,7 @@ void Checker::visit(SelectStmtAST &ast) {
 void Checker::visit(IterationStmtAST &ast) {
 
   // TODO： while语句的stmt之is_inloop属性置为true.
-  //this->in_loop = true; 
+  // this->in_loop = true;
   if (ast.cond) {
     ast.cond->accept(*this);
   }
@@ -284,7 +279,7 @@ void Checker::visit(IterationStmtAST &ast) {
 
     ast.stmt->accept(*this);
   }
-  //this->in_loop = false; 废弃！
+  // this->in_loop = false; 废弃！
 }
 
 /**
@@ -369,11 +364,10 @@ void Checker::visit(LValAST &ast) {
     // TODO ERROR
     // 左值数组下标不是整数
     // 例如c[0.1] = 1;
-
   }
 
   auto str = ast.id.get();
-  //在符号表中查找对应变量
+  // 在符号表中查找对应变量
   Entry *entry = Lookup(*str);
   if (entry == nullptr) {
     // TODO ERROR
@@ -386,8 +380,6 @@ void Checker::visit(LValAST &ast) {
   // 对非数组变量采用下标变量的形式访问
   // 例如 int c; c[10][10] = 10;
   if (!entry->is_array && !ast.arrays.empty()) {
-
-
   }
 
   this->current_type.type = entry->type;
@@ -406,7 +398,7 @@ void Checker::visit(NumberAST &ast) {
  * @param {CallAST&} ast - 函数调用类
  */
 void Checker::visit(CallAST &ast) {
-  //特殊函数不做处理
+  // 特殊函数不做处理
   if (!ast.id->compare("getint") || !ast.id->compare("getfloat") ||
       !ast.id->compare("getch") || !ast.id->compare("getarray") ||
       !ast.id->compare("get_float_array") || !ast.id->compare("putint") ||
@@ -421,27 +413,23 @@ void Checker::visit(CallAST &ast) {
   // TODO 函数未定义
   // TODO 参数长度不匹配
   // TODO 参数类型不匹配
- 
+
   if (entry == nullptr) {
     // TODO ERROR
     // 函数未定义
- 
- 
+
   } else {
-    //参数长度不匹配
+    // 参数长度不匹配
     if (entry->func_params.size() != ast.funcCParamList.size()) {
       // TODO ERROR
       // 函数参数/类型不匹配
- 
- 
-     } else {
-      //遍历实参与形参
+
+    } else {
+      // 遍历实参与形参
       int i = 0;
       for (auto &exp : ast.funcCParamList) {
         exp->accept(*this);
         if (this->current_type.type != entry->func_params[i].type) {
-
-
 
         } else {
           i++;
