@@ -15052,140 +15052,140 @@ SemanticProgram {
             ),
             parent: None,
             symbols: {
-                "add3": SymbolId(
-                    22,
-                ),
-                "test_for_zero_iteration": SymbolId(
-                    33,
-                ),
-                "test_array": SymbolId(
-                    35,
-                ),
-                "test_arith_and_assign": SymbolId(
-                    28,
-                ),
-                "test_const_and_global_index": SymbolId(
-                    42,
-                ),
-                "getarray": SymbolId(
-                    3,
-                ),
-                "getfarray": SymbolId(
-                    4,
-                ),
-                "test_float_expr": SymbolId(
-                    38,
-                ),
-                "putarray": SymbolId(
-                    9,
-                ),
-                "g_arr": SymbolId(
-                    15,
-                ),
-                "clamp_nonneg": SymbolId(
-                    25,
-                ),
-                "integrated_test": SymbolId(
-                    43,
-                ),
-                "putstr": SymbolId(
-                    7,
-                ),
-                "passthrough_int": SymbolId(
-                    23,
-                ),
-                "starttime": SymbolId(
-                    11,
-                ),
-                "test_prefix_postfix": SymbolId(
-                    36,
-                ),
-                "print_case_result": SymbolId(
-                    27,
-                ),
-                "putfarray": SymbolId(
-                    10,
-                ),
-                "passthrough_float": SymbolId(
-                    24,
-                ),
-                "putch": SymbolId(
-                    6,
+                "getch": SymbolId(
+                    1,
                 ),
                 "test_unary_and_empty_stmt": SymbolId(
                     29,
                 ),
-                "msg_pass": SymbolId(
-                    20,
+                "g_const": SymbolId(
+                    14,
                 ),
-                "getch": SymbolId(
-                    1,
-                ),
-                "msg_begin": SymbolId(
-                    18,
-                ),
-                "g_fc": SymbolId(
-                    17,
-                ),
-                "msg_test": SymbolId(
-                    19,
-                ),
-                "fill_linear": SymbolId(
-                    26,
-                ),
-                "test_nested_branch": SymbolId(
-                    31,
-                ),
-                "putfloat": SymbolId(
-                    8,
-                ),
-                "test_multidim_row_major": SymbolId(
-                    41,
-                ),
-                "test_if_else_logic": SymbolId(
-                    30,
-                ),
-                "g_f": SymbolId(
-                    16,
-                ),
-                "getfloat": SymbolId(
-                    2,
-                ),
-                "test_float_arith_extended": SymbolId(
-                    39,
-                ),
-                "getint": SymbolId(
-                    0,
-                ),
-                "msg_fail": SymbolId(
-                    21,
+                "test_arith_and_assign": SymbolId(
+                    28,
                 ),
                 "test_for_break_continue": SymbolId(
                     34,
                 ),
-                "g_scalar": SymbolId(
-                    13,
+                "msg_begin": SymbolId(
+                    18,
                 ),
-                "stoptime": SymbolId(
-                    12,
+                "test_nested_branch": SymbolId(
+                    31,
                 ),
-                "test_while_break_continue": SymbolId(
-                    32,
+                "getint": SymbolId(
+                    0,
                 ),
-                "test_forced_conversion": SymbolId(
-                    40,
+                "putch": SymbolId(
+                    6,
                 ),
-                "main": SymbolId(
-                    44,
+                "g_f": SymbolId(
+                    16,
                 ),
-                "g_const": SymbolId(
-                    14,
+                "add3": SymbolId(
+                    22,
+                ),
+                "test_float_expr": SymbolId(
+                    38,
                 ),
                 "test_scope_and_call": SymbolId(
                     37,
                 ),
+                "starttime": SymbolId(
+                    11,
+                ),
+                "test_float_arith_extended": SymbolId(
+                    39,
+                ),
+                "test_multidim_row_major": SymbolId(
+                    41,
+                ),
+                "getarray": SymbolId(
+                    3,
+                ),
+                "msg_fail": SymbolId(
+                    21,
+                ),
+                "passthrough_int": SymbolId(
+                    23,
+                ),
+                "test_const_and_global_index": SymbolId(
+                    42,
+                ),
+                "msg_test": SymbolId(
+                    19,
+                ),
+                "getfloat": SymbolId(
+                    2,
+                ),
+                "putfloat": SymbolId(
+                    8,
+                ),
+                "putarray": SymbolId(
+                    9,
+                ),
+                "putstr": SymbolId(
+                    7,
+                ),
+                "test_if_else_logic": SymbolId(
+                    30,
+                ),
+                "test_array": SymbolId(
+                    35,
+                ),
+                "test_prefix_postfix": SymbolId(
+                    36,
+                ),
+                "test_forced_conversion": SymbolId(
+                    40,
+                ),
+                "integrated_test": SymbolId(
+                    43,
+                ),
+                "test_while_break_continue": SymbolId(
+                    32,
+                ),
+                "stoptime": SymbolId(
+                    12,
+                ),
+                "msg_pass": SymbolId(
+                    20,
+                ),
+                "fill_linear": SymbolId(
+                    26,
+                ),
+                "clamp_nonneg": SymbolId(
+                    25,
+                ),
+                "passthrough_float": SymbolId(
+                    24,
+                ),
+                "main": SymbolId(
+                    44,
+                ),
+                "g_fc": SymbolId(
+                    17,
+                ),
+                "g_arr": SymbolId(
+                    15,
+                ),
+                "putfarray": SymbolId(
+                    10,
+                ),
+                "print_case_result": SymbolId(
+                    27,
+                ),
+                "getfarray": SymbolId(
+                    4,
+                ),
                 "putint": SymbolId(
                     5,
+                ),
+                "test_for_zero_iteration": SymbolId(
+                    33,
+                ),
+                "g_scalar": SymbolId(
+                    13,
                 ),
             },
         },
@@ -15199,14 +15199,14 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "c": SymbolId(
-                    47,
-                ),
                 "a": SymbolId(
                     45,
                 ),
                 "b": SymbolId(
                     46,
+                ),
+                "c": SymbolId(
+                    47,
                 ),
             },
         },
@@ -15287,17 +15287,17 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "n": SymbolId(
-                    52,
-                ),
                 "arr": SymbolId(
                     51,
+                ),
+                "start": SymbolId(
+                    53,
                 ),
                 "i": SymbolId(
                     54,
                 ),
-                "start": SymbolId(
-                    53,
+                "n": SymbolId(
+                    52,
                 ),
             },
         },
@@ -15322,11 +15322,11 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "value": SymbolId(
-                    56,
-                ),
                 "case_id": SymbolId(
                     55,
+                ),
+                "value": SymbolId(
+                    56,
                 ),
             },
         },
@@ -15362,11 +15362,11 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "flag": SymbolId(
-                    57,
-                ),
                 "x": SymbolId(
                     58,
+                ),
+                "flag": SymbolId(
+                    57,
                 ),
             },
         },
@@ -15413,9 +15413,6 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "a": SymbolId(
-                    59,
-                ),
                 "c": SymbolId(
                     61,
                 ),
@@ -15424,6 +15421,9 @@ SemanticProgram {
                 ),
                 "b": SymbolId(
                     60,
+                ),
+                "a": SymbolId(
+                    59,
                 ),
             },
         },
@@ -15448,11 +15448,11 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "b": SymbolId(
-                    65,
-                ),
                 "a": SymbolId(
                     64,
+                ),
+                "b": SymbolId(
+                    65,
                 ),
                 "flag": SymbolId(
                     63,
@@ -15618,11 +15618,11 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "i": SymbolId(
-                    71,
-                ),
                 "sum": SymbolId(
                     72,
+                ),
+                "i": SymbolId(
+                    71,
                 ),
             },
         },
@@ -15698,14 +15698,14 @@ SemanticProgram {
                 ),
             ),
             symbols: {
+                "local": SymbolId(
+                    75,
+                ),
                 "sum": SymbolId(
                     77,
                 ),
                 "i": SymbolId(
                     76,
-                ),
-                "local": SymbolId(
-                    75,
                 ),
             },
         },
@@ -15815,14 +15815,14 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "a": SymbolId(
-                    83,
+                "b": SymbolId(
+                    84,
                 ),
                 "c": SymbolId(
                     85,
                 ),
-                "b": SymbolId(
-                    84,
+                "a": SymbolId(
+                    83,
                 ),
             },
         },
@@ -15847,29 +15847,29 @@ SemanticProgram {
                 ),
             ),
             symbols: {
+                "f": SymbolId(
+                    87,
+                ),
                 "to_float": SymbolId(
                     88,
-                ),
-                "ok": SymbolId(
-                    93,
-                ),
-                "mixed_assign": SymbolId(
-                    90,
-                ),
-                "via_call_int": SymbolId(
-                    91,
-                ),
-                "via_call_float": SymbolId(
-                    92,
-                ),
-                "i": SymbolId(
-                    86,
                 ),
                 "to_int": SymbolId(
                     89,
                 ),
-                "f": SymbolId(
-                    87,
+                "i": SymbolId(
+                    86,
+                ),
+                "mixed_assign": SymbolId(
+                    90,
+                ),
+                "via_call_float": SymbolId(
+                    92,
+                ),
+                "ok": SymbolId(
+                    93,
+                ),
+                "via_call_int": SymbolId(
+                    91,
                 ),
             },
         },
@@ -15938,14 +15938,14 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "m": SymbolId(
-                    94,
-                ),
                 "k": SymbolId(
                     97,
                 ),
                 "j": SymbolId(
                     96,
+                ),
+                "m": SymbolId(
+                    94,
                 ),
                 "i": SymbolId(
                     95,
@@ -15984,11 +15984,11 @@ SemanticProgram {
                 ),
             ),
             symbols: {
-                "v": SymbolId(
-                    99,
-                ),
                 "idx": SymbolId(
                     98,
+                ),
+                "v": SymbolId(
+                    99,
                 ),
             },
         },
@@ -16002,17 +16002,17 @@ SemanticProgram {
                 ),
             ),
             symbols: {
+                "k": SymbolId(
+                    102,
+                ),
+                "total": SymbolId(
+                    103,
+                ),
                 "buf": SymbolId(
                     100,
                 ),
                 "i": SymbolId(
                     101,
-                ),
-                "total": SymbolId(
-                    103,
-                ),
-                "k": SymbolId(
-                    102,
                 ),
             },
         },
