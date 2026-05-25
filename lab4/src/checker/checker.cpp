@@ -281,7 +281,7 @@ void Checker::visit(IterationStmtAST& ast) {
     ast.cond->accept(*this);
   }
   if (ast.stmt) {
-    ast.is_inloop = true;
+    ast.stmt->is_inloop = true;
     ast.stmt->accept(*this);
   }
   // this->in_loop = false; 废弃！
