@@ -1,0 +1,6 @@
+Selected backend: LLVM/inkwell
+Current repository now lowers semantic AST into a structured internal IR and optimizes it before LLVM lowering.
+Generated files: output/ir.txt, output/optimized_ir.txt, output/optimization_report.txt
+LLVM backend code is present but disabled in the default build.
+To enable it later: cargo run --features llvm-backend
+Current local LLVM install is insufficient for llvm-sys: missing llvm-config and full LLVM libraries.
