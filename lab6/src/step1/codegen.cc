@@ -55,7 +55,11 @@ bool codeGenerate(const std::string &ir_filename,
     auto features = "";
 
     TargetOptions opt;
+#if LLVM_VERSION_MAJOR >= 18
+    auto RM = std::optional<Reloc::Model>();
+#else
     auto RM = Optional<Reloc::Model>();
+#endif
     auto TheTargetMachine =
         target->createTargetMachine(target_triple, cpu, features, opt, RM);
 
@@ -95,10 +99,18 @@ bool codeGenerate(const std::string &ir_filename,
 
 std::string getGenFilename(const std::string &ir_filename,
                            const CodeGenFileType &gen_filetype) {
+#if LLVM_VERSION_MAJOR >= 18
+    if (gen_filetype == CodeGenFileType::Null) {
+        return nullptr;
+    }
+    return ir_filename.substr(0, ir_filename.find(".")) +
+           (gen_filetype == CodeGenFileType::AssemblyFile ? ".s" : ".o");
+#else
     if (gen_filetype == CGFT_Null) {
         return nullptr;
     }
     return ir_filename.substr(0, ir_filename.find(".")) +
            (gen_filetype == CGFT_AssemblyFile ? ".s" : ".o");
+#endif
 }
 } // namespace codegen
