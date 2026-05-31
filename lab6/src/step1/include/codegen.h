@@ -4,9 +4,17 @@
 #include "llvm/IR/Module.h"
 #include "llvm/IRReader/IRReader.h"
 #include "llvm/Support/FileSystem.h"
-#include "llvm/Support/Host.h" // For LLVM 11, the header is located in llvm/Support folder, but for newer versions, that folder should be llvm/TargetParser.
+#if LLVM_VERSION_MAJOR >= 14
+#include "llvm/TargetParser/Host.h"
+#else
+#include "llvm/Support/Host.h"
+#endif
 #include "llvm/Support/SourceMgr.h"
-#include "llvm/Support/TargetRegistry.h" // For LLVM 11, the header is located in llvm/Support folder, but for newer versions, that folder should be llvm/MC.
+#if LLVM_VERSION_MAJOR >= 14
+#include "llvm/MC/TargetRegistry.h"
+#else
+#include "llvm/Support/TargetRegistry.h"
+#endif
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Target/TargetMachine.h"
 #include "llvm/Target/TargetOptions.h"

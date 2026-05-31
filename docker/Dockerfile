@@ -6,9 +6,15 @@ ENV TZ=Asia/Shanghai
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
-    make \
-    gcc g++ llvm clang \
-    gcc-riscv64-linux-gnu g++-riscv64-linux-gnu \
+    make 
+
+RUN apt-get update && apt-get install -y \
+    gcc g++ llvm clang 
+
+RUN apt-get update && apt-get install -y \
+    gcc-riscv64-linux-gnu g++-riscv64-linux-gnu 
+
+RUN apt-get update && apt-get install -y \
     flex bison \
     qemu-user qemu-user-static
 
